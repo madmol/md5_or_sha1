@@ -6,28 +6,23 @@ require 'digest'
 puts 'Enter word or phrase for encrypting'
 text = STDIN.gets.strip
 
+user_choice = ''
+
 # Ask user to choose method and put it in variable user_choice
-puts "Please choose method: " \
-     "1. MD5" \
-     "2. SHA1"
-user_choice = STDIN.gets.to_i
-
-loop do
-     if user_choice == 1 || user_choice == 2
-       break
-     else
-       puts 'Please press 1 for MD5 or 2 for SHA1'
-     end
+until (1..2).include?(user_choice)
+  puts "Please choose method: "
+  puts "1. MD5"
+  puts "2. SHA1"
+  user_choice = STDIN.gets.to_i
 end
-
-encrypt_phrase = ''
 
 # Print encrypted phrase
-case user_choice
-when 1
-     encrypt_phrase = Digest::MD5.hexdigest(text)
-when 2
-     encrypt_phrase = Digest::SHA1.hexdigest(text)
-end
+encrypt_phrase =
+  case user_choice
+  when 1
+    Digest::MD5.hexdigest(text)
+  when 2
+    Digest::SHA1.hexdigest(text)
+  end
 
 puts "Here's what you got: #{encrypt_phrase}"
