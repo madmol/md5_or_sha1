@@ -9,10 +9,11 @@ text = STDIN.gets.strip
 user_choice = ''
 
 # Ask user to choose method and put it in variable user_choice
-until (1..2).include?(user_choice)
+until (1..3).include?(user_choice)
   puts "Please choose method: "
   puts "1. MD5"
   puts "2. SHA1"
+  puts "3. SHA2"
   user_choice = STDIN.gets.to_i
 end
 
@@ -23,6 +24,8 @@ encrypt_phrase =
     Digest::MD5.hexdigest(text)
   when 2
     Digest::SHA1.hexdigest(text)
+  when 3
+    Digest::SHA2.hexdigest(text)
   end
 
 puts "Here's what you got: #{encrypt_phrase}"
